@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.heading {
+  position: relative;
+}
+
+.Avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.css-100vwdj {
+  gap: 0rem;
+  font-weight: 800;
+}
+
+#bgimgs {
+  background-image: url("../public/img.jpg");
+  background-position: center;
+  background-size: cover;
+  background-attachment: scroll;
+  background-clip: border-box;
+}
+
+.navbars {
+  display: flex;
+  font-family: 'Roboto', sans-serif;
+  flex-direction: column;
+  gap: 0px;
+}
+
+.slider,
+#authication {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 800;
+  -webkit-box-shadow: 7px 3px 84px 5px #908b8c;
+  -moz-box-shadow: 7px 3px 84px 5px #908b8c;
+  box-shadow: 2px 2px 44px 15px #faeaed;
+}
+
+.slider img {
+  height: 60vh;
+  background: #333a33;
+  background-blend-mode: multiply;
+  width: 100vw;
+
+
+  /* object-fit: contain; */
+}
+
+.css-1xjenaw option {
+  color: #333 !important;
+}
+
+#carousel {
+  /* background: #d8d8da; */
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  padding: 2.5rem;
+  font-weight: 700;
+  /* margin-left: 2.5rem; */
+  backdrop-filter: blur(82px);
+}
+
+#carouselcaption {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-family: 'Roboto', sans-serif;
+  padding: 2rem;
+  backdrop-filter: blur(22px);
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  width: fit-content;
+  flex-wrap: wrap;
+}
+
+#address {
+  background-color: #eae3e5;
+  border: 2px solid skyblue;
+}
+
+#drawer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 99;
+  width: 25%;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 800;
+  /* padding:2.5rem; */
+  background: #a1d0c2c5;
+  color: #333;
+  transition: 0.5s all ease-in-out;
+}
+
+#drawernavlinks:hover {
+  background: #7a7a7a;
+  transition: '0.8s all linear';
+}
+
+#drawernavlinks {
+  color: #333;
+  font-weight: 700;
+}
+
+#subnav button {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 800;
+  background-color: transparent !important;
+}
+
+#subnav {
+  -webkit-box-shadow: 7px 3px 84px 5px #908b8c;
+  -moz-box-shadow: 7px 3px 84px 5px #908b8c;
+  box-shadow: 0px 0px 24px 5px #908b8c;
+}
+
+#timecontent {
+  background-color: #333a33;
+  color: #fff;
+  padding: 0.5rem;
+  border-radius: 28%;
+  display: flex;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.3rem;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+
+  height: 100%;
+  object-fit: cover;
+}
+
+#cardtext {
+  color: #333 !important;
+  font-size: small !important;
+}
+
+@media screen and (max-width:780px) {
+  #carouselcaption {
+    left: 0%;
+    padding: 1rem;
+    color: #fff;
+    backdrop-filter: blur(5px);
+    font-size: 2rem;
+    font-weight: 900;
+    background: rgba(75, 69, 69, 0.5);
+    background-blend-mode: multiply;
+  }
+
+  #drawer {
+    width: fit-content;
+  }
+
+  /* .overlay{
+  width: 63vw;
+} */
+}
