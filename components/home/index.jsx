@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import CarouselContent from './Carousel';
 import Products from './Products';
 import Intro from './Intro';
@@ -12,10 +12,12 @@ function HomePage() {
         <section id="introcontainer">
           <Intro />
         </section>
-        <section id="Products"><Products /></section>
+        <section id="Products">
+          <Products />
+        </section>
       </article>
     </>
   );
 }
 
-export default HomePage
+export default HomePage;
