@@ -18,7 +18,7 @@ import {
 import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash, FaCamera } from 'react-icons/fa';
 import ImageDrop from '../components/ImageDrop';
-import { ContextAuth, useGlobalContext } from '../context/authcontext';
+import { ContextAuth, useGlobalContext } from '../src/context/authcontext';
 import Bgimg from '../public/img.jpg';
 import { FaUser } from 'react-icons/fa';
 import axios from 'axios';
@@ -97,7 +97,7 @@ const Signup = () => {
       });
 
       if (errorMsg !== null) setErrorMsg(null);
-      console.log(res.data);
+      // console.log(res.data);
       if (res.data === 'username available') {
         setUsernameAvailable(true);
         // set the username setUsername()
