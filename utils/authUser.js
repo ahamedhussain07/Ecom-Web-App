@@ -28,18 +28,13 @@ export const registerUser = async (
 export const loginUser = async (data, setError, setLoading) => {
   try {
     const res = await axios.post(`${baseUrl}/api/login`, { data });
-
-    setToken(res.data)
+    // console.log(res.data)
+    setToken(res.data);
   } catch (error) {
     const errorMsg = catchErrors(error);
     setError(errorMsg);
   }
-  setLoading(false)
-};
-
-const setToken = (token) => {
-  cookie.set("token", token);
-  Router.push("/");
+  setLoading(false);
 };
 
 export const redirectUser = (ctx, location) => {
@@ -53,10 +48,14 @@ export const redirectUser = (ctx, location) => {
   }
 };
 
+const setToken = (token) => {
+  cookie.set("token", token);
+  Router.push("/");
+};
 
-export const logoutUser = (username) =>{
-  cookie.set("username",email)
-    cookie.remove("token")
-    Router.push("/login")
-    Router.reload()
-}
+export const logoutUser = (username) => {
+  // cookie.set("username", username);
+  // cookie.remove("token");
+  Router.push("/Authentication");
+  Router.reload();
+};

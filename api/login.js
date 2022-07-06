@@ -9,13 +9,14 @@ const bcrypt = require("bcryptjs");
 const regexUserName = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/;
 
 router.post("/", async (req, res) => {
-  const { username, password } = req.body.data;
+  // console.log(req.body.data)
+  const { username, Password } = req.body.data;
 
   if (username.length < 3) return res.status(401).send("Invalid");
 
   if (!regexUserName.test(username)) return res.status(401).send("Invalid");
 
-  if (password.length < 6)
+  if (Password.length < 6)
     return res.status(401).send("Password Must Be 6 Characters");
 
   try {
@@ -25,7 +26,7 @@ router.post("/", async (req, res) => {
 
     if (!user) return res.status(401).send("Invalid Credentials");
 
-    const isPassword = await bcrypt.compare(password, user.password);
+    const isPassword = await bcrypt.compare(Password, user.password);
 
     if (!isPassword) return res.status(401).send("Invalid Credentials");
 

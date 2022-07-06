@@ -15,40 +15,37 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-// MyApp.getInitialProps = async ({ ctx, Component }) => {
-//   const { token } = parseCookies(ctx);
+MyApp.getInitialProps = async ({ ctx, Component }) => {
+  const { token } = parseCookies(ctx);
+ 
+  let pageProps = {};
 
-//   let pageProps = {};
+  const protectedRoutes = ctx.pathname === "/order";
 
-//   const protectedRoutes = ctx.pathname === "/";
+  if (Component.getInitialProps) {
+    pageProps = await Component.getInitialProps(ctx);
+  }
 
-//   if (Component.getInitialProps) {
-//     pageProps = await Component.getInitialProps(ctx);
-//   }
+  if (!token) {
+    // destroyCookie(ctx, "token");
+    protectedRoutes && redirectUser(ctx, "/Authentication");
+  } else {
+    try {
+      const res = await axios.get(`${baseUrl}/api/auth`, {
+        headers: { Authorization: token },
+      });
+      const { user } = res.data;
+      if (user) ctx.pathname === "/Authentication" && redirectUser("/");  
 
-//   if (!token) {
-//     destroyCookie(ctx, "token");
-//     protectedRoutes && redirectUser(ctx, "/Authication");
-//   } else {
-//     try {
-//       const res = await axios.get(`${baseUrl}/api/auth`, {
-//         headers: { Authorization: token },
-//       });
+      pageProps.user = user;
+    } catch (error) {
+      console.log("error at _app.js catch",error)  
+      destroyCookie(ctx, "token");
+      redirectUser(ctx, "/Authentication");
+    }
+  }
 
-//       const {user} = res.data
-
-//       if(user)  !protectedRoutes && redirectUser(ctx,'/')
-
-//       pageProps.user = user
-
-//     } catch (error) {
-//       destroyCookie(ctx, "token");
-//       redirectUser(ctx, "/Authication");
-//     }
-//   }
-
-//   return {pageProps}
-
-// };
+  return { pageProps };
+};
 
 export default MyApp;
