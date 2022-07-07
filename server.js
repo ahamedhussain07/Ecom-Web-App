@@ -23,6 +23,8 @@ connectDb();
 nextApp.prepare().then(() => {
   app.use("/api/signup", require("./api/signup"));
   app.use("/api/login", require("./api/login"));
+  app.use("/api/auth", require("./api/auth"));
+  app.use("/api/products", require("./api/products"));
 
   app.all("*", (req, res) => handle(req, res)); // if we dont type this our pages folder will not work
 

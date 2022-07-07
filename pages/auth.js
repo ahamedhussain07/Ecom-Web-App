@@ -18,6 +18,10 @@ import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash, FaCamera } from 'react-icons/fa';
 import ImageDrop from '../components/ImageDrop';
 import { ContextAuth, useGlobalContext } from '../src/context/authcontext';
+<<<<<<< HEAD:pages/auth.js
+=======
+import Bgimg from '../public/img.jpg';
+>>>>>>> 50b8edf0f1068097642f1917e6e283d5e5848c31:pages/Authentication.js
 import { FaUser } from 'react-icons/fa';
 import axios from 'axios';
 import baseUrl from '../utils/baseUrl';
@@ -89,7 +93,7 @@ const Signup = () => {
       });
 
       if (errorMsg !== null) setErrorMsg(null);
-      console.log(res.data);
+      // console.log(res.data);
       if (res.data === 'username available') {
         setUsernameAvailable(true);
         // set the username setUsername()

@@ -86,7 +86,7 @@ const SidebarContent = ({ setOpen, Open }) => {
   const toggleDrawer = () => {
     setOpen((prev) => !prev);
   };
-  console.log(pathname);
+  // console.log(pathname);
   return (
     <Stack>
       <div id="drawer" style={Open ? { left: 0 } : { left: '-80%' }}>
