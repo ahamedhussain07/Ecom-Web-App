@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react';
 function Subnav() {
   return (
-    <Box mb={1} bg={'gray.200'} w={'100%'} p={3} id="subnav">
+    <Box  bg={'gray.200'} w={'100%'} p={3} id="subnav">
       <HStack>
         <Flex flexWrap={'wrap'} justifyContent={'center'} alignItems={'center'}>
           <Button>

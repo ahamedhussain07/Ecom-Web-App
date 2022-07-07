@@ -4,7 +4,6 @@ import {
   Input,
   Flex,
   Text,
-  Stack,
   Image,
   InputGroup,
   InputRightElement,
@@ -12,19 +11,19 @@ import {
   FormControl,
   FormHelperText,
   FormLabel,
-  Avatar,
-  AvatarBadge,
+  Stack
 } from '@chakra-ui/react';
+import {Spinner} from "react-bootstrap"
 import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash, FaCamera } from 'react-icons/fa';
 import ImageDrop from '../components/ImageDrop';
-import { ContextAuth, useGlobalContext } from '../context/authcontext';
-import Bgimg from '../public/img.jpg';
+import { ContextAuth, useGlobalContext } from '../src/context/authcontext';
 import { FaUser } from 'react-icons/fa';
 import axios from 'axios';
 import baseUrl from '../utils/baseUrl';
-
-function Authication() {
+import Notification from '../components/notification';
+// import ImgSvg from '../public/img.webp';
+function Authentication() {
   const [Show, setShow] = useState(false);
   const [Login, setLogin] = useState(true);
 
@@ -41,15 +40,8 @@ function Authication() {
       <div id="authication">
         <Flex>
           <Junction />
-          <Stack
-            w={'100vh'}
-            h={'100vh'}
-            backgroundImage={`url(${Bgimg})`}
-            id="bgimgs"
-          >
-            <Image src="/img.jpg" alt="No images" boxSize={'100vh'} />
-          </Stack>
         </Flex>
+        <img src="./img.png" alt="loading.." id="authbg"/>
       </div>
     </ContextAuth>
   );
@@ -73,7 +65,7 @@ const Signup = () => {
     Login,
     mediaPreview,
     handleChangeimg,
-    Loading,
+    formLoading,
     handlepassword,
     onhandleSignup,
     errorMsg,
@@ -115,7 +107,7 @@ const Signup = () => {
     <>
       <form onSubmit={handleSubmit(onhandleSignup)}>
         <Stack spacing={0} width={'22rem'}>
-          <Header Login={Login}></Header>
+          <Header Login={Login} errorMsg={errorMsg}></Header>
 
           <div className="Avatar">
             <ImageDrop
@@ -135,8 +127,8 @@ const Signup = () => {
                   value: 3,
                   message: 'Minimum Required Name is 3',
                 },
-              
               })}
+              size={'sm'}
             />
             <FormHelperText color="red.700" fontWeight={'500'}>
               {errors?.Name?.message}
@@ -159,6 +151,7 @@ const Signup = () => {
                   message: 'Required Numbers only ',
                 },
               })}
+              size={'sm'}
             />
             <FormHelperText color="red.700" fontWeight={'500'}>
               {errors?.Number?.message}
@@ -169,8 +162,9 @@ const Signup = () => {
             <FormLabel>UserName</FormLabel>
             <InputGroup>
               <InputLeftElement
-                backgroundColor={'gray.300'}
-                children={Loading ? <Spinner /> : <FaUser />}
+                size={'sm'}
+                id="addod"
+                children={formLoading ? <Spinner /> : <FaUser />}
               ></InputLeftElement>
               <Input
                 type={'text'}
@@ -182,6 +176,7 @@ const Signup = () => {
                     message: 'Minimum Required Name is 3',
                   },
                 })}
+                size={'sm'}
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
@@ -193,7 +188,7 @@ const Signup = () => {
           <FormControl>
             <FormLabel>Address</FormLabel>
             <textarea
-              cols={40}
+              cols={43}
               rows={3}
               id="address"
               {...register('address', {
@@ -220,11 +215,13 @@ const Signup = () => {
                     message: 'Minimum Required Passowrd  10',
                   },
                 })}
+                size={'sm'}
               />
               <InputRightElement
                 onClick={handlepassword}
                 cursor="pointer"
-                backgroundColor={'gray.100'}
+                size={'sm'}
+                id="addod"
                 children={Show ? <FaEye /> : <FaEyeSlash />}
               ></InputRightElement>
             </InputGroup>
@@ -233,7 +230,7 @@ const Signup = () => {
             </FormHelperText>
           </FormControl>
           <Suggestions Login={Login}></Suggestions>
-          <Buttons></Buttons>
+          <Buttons Login={Login}></Buttons>
         </Stack>
       </form>
     </>
@@ -246,19 +243,19 @@ const LoginUi = () => {
     formState: { errors },
   } = useForm();
 
-  const { Loading, Show, handlepassword, Login, onhandleLogin } =
+  const { formLoading, Show, errorMsg, handlepassword, Login, onhandleLogin } =
     useGlobalContext();
   return (
     <>
       <form onSubmit={handleSubmit(onhandleLogin)}>
         <Stack spacing={5} m={3} width={'22rem'}>
-          <Header Login={Login}></Header>
+          <Header Login={Login} errorMsg={errorMsg}></Header>
           <FormControl>
             <FormLabel>UserName</FormLabel>
             <InputGroup>
               <InputLeftElement
-                backgroundColor={'gray.300'}
-                children={Loading ? <Spinner /> : <FaUser />}
+                id="addod"
+                children={formLoading ? <Spinner /> : <FaUser />}
               ></InputLeftElement>
               <Input
                 type={'text'}
@@ -296,7 +293,7 @@ const LoginUi = () => {
               <InputRightElement
                 onClick={handlepassword}
                 cursor="pointer"
-                backgroundColor={'gray.100'}
+                id="addod"
                 children={Show ? <FaEye /> : <FaEyeSlash />}
               ></InputRightElement>
             </InputGroup>
@@ -305,18 +302,17 @@ const LoginUi = () => {
             </FormHelperText>
           </FormControl>
           <Suggestions Login={Login}></Suggestions>
-          <Buttons />
+          <Buttons Login={Login} />
         </Stack>
       </form>
     </>
   );
 };
-const Header = ({ Login }) => {
+const Header = ({ Login, errorMsg }) => {
   return (
     <>
+      {errorMsg && <Notification msg={errorMsg} resmsg={errorMsg} />}
       <Text
-        fontSize={'4xl'}
-        bg={'gray.300'}
         p={2}
         alignContent="center"
         className="heading"
@@ -326,32 +322,32 @@ const Header = ({ Login }) => {
     </>
   );
 };
-const Buttons = () => {
+const Buttons = ({Login}) => {
   return (
-    <>
-      <Button type={'submit'} colorScheme={'whatsapp'}>
-        Create an Account
-      </Button>
-      <Button type={'reset'} colorScheme={'twitter'}>
+    <div className="d-flex justify-content-end aligns-items-center gap-3">
+      <button type={'reset'} className="btn btn-secondary">
         Reset
-      </Button>
-    </>
+      </button>
+      <button type={'submit'} className="btn btn-success">
+        {Login ? 'Login' : 'Create An Account'}
+      </button>
+    </div>
   );
 };
 const Suggestions = ({ Login }) => {
   const { handlelogintoggle } = useGlobalContext();
   return (
     <>
-      <Text color="blue.900" as={'u'}>
+      <Text color="black" fontWeight={'900'} as={'span'}>
         Forgot Password?
       </Text>
-      <Text color="black.200">
+      <Text color="black" fontWeight={'900'}>
         {Login ? "I don't Have a Account" : 'Already have A Account?'}
         <Button variant={'link'} onClick={handlelogintoggle}>
-          Login
+          {Login ? 'SignUp' : 'Login'}
         </Button>
       </Text>
     </>
   );
 };
-export default Authication;
+export default Authentication;

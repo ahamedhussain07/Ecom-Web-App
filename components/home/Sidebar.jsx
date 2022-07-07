@@ -28,7 +28,7 @@ function Sidebar() {
     logoutUser();
   };
   const handleSignup = () => {
-    Router.push('/Authetication');
+    Router.push('/auth');
   };
   return (
     <Box>
@@ -43,10 +43,15 @@ function Sidebar() {
               size={'1.5rem'}
               onClick={() => setOpen(true)}
               cursor={'pointer'}
+              color="black"
             />
             <Navbar.Brand className="d-flex  row-gap-3 ml-3 align-items-center">
               <h2 className="brandname">Huassy</h2>
-              <FaShoppingBag className="brandname" size={'1.5rem'} />
+              <FaShoppingBag
+                className="brandname"
+                size={'1.5rem'}
+                color="black"
+              />
             </Navbar.Brand>
             <Nav className="ms-auto  d-flex row-gap-3 align-items-center">
               <NavDropdown
@@ -66,7 +71,7 @@ function Sidebar() {
                   </NavDropdown.Item>
                 )}{' '}
               </NavDropdown>
-              <FaShoppingBasket size={'1.5rem'} />
+              <FaShoppingBasket size={'1.5rem'} color="black" />
             </Nav>
           </Flex>
         </Navbar>
@@ -97,6 +102,7 @@ const SidebarContent = ({ setOpen, Open }) => {
           <FaTimes
             onClick={() => setOpen((prev) => !prev)}
             cursor={'pointer'}
+            color="black"
           />
         </Flex>
         <Box bg={''}>

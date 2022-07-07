@@ -10,7 +10,9 @@ function Notification({ msg, resmsg }) {
         <strong className="me-auto">{'Authetication Error'}</strong>
         {/* <small>11 mins ago</small> */}
       </Toast.Header>
-      <Toast.Body>{msg}</Toast.Body>
+      <Toast.Body className="bg-danger">
+        <strong className="me-auto text-white">{msg}</strong>
+      </Toast.Body>
     </Toast>
   );
 }
