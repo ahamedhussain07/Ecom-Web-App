@@ -25,7 +25,7 @@ export const registerUser = async (
   setFormLoading(false);
 };
 
-export const loginUser = async (data, setError, setLoading) => {
+export const loginUser = async (data, setError) => {
   try {
     const res = await axios.post(`${baseUrl}/api/login`, { data });
     // console.log(res.data)
@@ -34,7 +34,6 @@ export const loginUser = async (data, setError, setLoading) => {
     const errorMsg = catchErrors(error);
     setError(errorMsg);
   }
-  setLoading(false);
 };
 
 export const redirectUser = (ctx, location) => {
