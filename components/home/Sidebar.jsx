@@ -22,7 +22,7 @@ import {
 } from 'react-icons/fa';
 import cookie from 'js-cookie';
 let token = cookie.get('token');
-function Sidebar() {
+function Sidebar({user}) {
   const [Open, setOpen] = React.useState(false);
   const handlelogout = () => {
     logoutUser();
@@ -57,8 +57,9 @@ function Sidebar() {
               <NavDropdown
                 className="text-dark"
                 drop={'start'}
-                title={<Avatar size={'sm'} />}
+                title={<Avatar size={'sm'} src={`${user?.profilePicUrl}`} />}
               >
+                <NavDropdown.Item className="bg-white-50">{user?.name}</NavDropdown.Item>
                 <NavDropdown.Item>Setting</NavDropdown.Item>
                 <NavDropdown.Item>Payment</NavDropdown.Item>
                 {token ? (

@@ -13,7 +13,7 @@ import baseUrl from "../utils/baseUrl";
 
 function Home({ user, productsData, errorLoading }) {
   const [products, setProducts] = useState(productsData);
-
+  const [CutUser, setCutUser] = useState(user);
   return (
     <main>
       <Head>
@@ -23,11 +23,11 @@ function Home({ user, productsData, errorLoading }) {
       </Head>
       <header>
         <nav className="navbars">
-          <Header />
+          <Header user={CutUser}/>
           <Subnav />
         </nav>
       </header>
-      <HomePage />
+      <HomePage productsData={productsData} />
     </main>
   );
 }

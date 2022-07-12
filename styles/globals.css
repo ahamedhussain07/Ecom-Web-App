@@ -225,43 +225,60 @@ font-family: sans-serif;
  background-size: cover;
  z-index: 999;
  gap: 1rem;
- margin: 0.5rem;
+ margin: 1.5rem;
  display: flex;
+ text-transform: capitalize;
  flex-direction: column;
  justify-content: flex-end;
  align-items: center;
  background-blend-mode: multiply;
- background-color: #aaa;
+ background-color: #848484;
 }
 #col:hover{
  background-size: 50vw;
 justify-content: center;
 cursor: pointer;
-background-color: #848484;
+background-color: #333;
  transition: 0.5s steps(10) all;
 }
-
+.title h2{
+  font-family: "Open sans" !important;
+letter-spacing: 0.5rem;
+  text-transform: capitalize;
+}
+.banner{
+  background-image: url('../public/bg.jpg');
+  background-size: contain;
+}
 #cardtext {
   color: #333 !important;
   font-size: small !important;
 }
 .productslider .card{
-  width: 18rem !important;
+  width: 16rem !important;
   padding: 0;
+  text-transform: capitalize;
+  font-family: 'Open Sans',sans-serif;
 }
 .productslider .card img{
-  max-height: 10rem !important;
-  width: 100%;
-  padding: 0;
+  width: 20vw;
+  margin-left: 1.5rem;
+  height: 20vw;
 }
 .card-body{
   font-size: 0.81rem;
 
 }
 .productslider {
-  position:absolute;
+  position:relative;
   left: 2rem;
   width: 90vw !important;
+}
+#col h4{
+color: #fff;
+font-family: "Open sans";
+font-weight: 800;
+font-size: 1rem;
 }
 .slick-next:before,
 .slick-prev:before {
